@@ -6,6 +6,6 @@ const newsRoutes = require('./assets/routes/news');
 app.use("/", indexRoutes);
 app.use("/news", newsRoutes);
 
-app.listen(4000, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("Scrapper is running");
 })
