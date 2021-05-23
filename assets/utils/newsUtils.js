@@ -26,8 +26,9 @@ const newsUtils = {
             let magazine = $(".m-article-attributes span").text();
             let imgsrc = $("figure img").attr("src");
             let header = $("article .o-article-header .a-heading").text();
-            let content = $("article .o-article-content * ").text();
+            let content = $("article .o-article-content * ").text().replace(/\n/g,'');
             let source =  $(".o-article-source a img").attr("src"); 
+            
             let article = {header, content, imgsrc, author, magazine, source};
             return article;
         }catch(e){
