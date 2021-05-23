@@ -20,7 +20,7 @@ const newsUtils = {
 
     async fetchArticle(href){
         try{
-            const {data} = await axios.get(`https://bankier.pl/wiadomosc/${href}.html`);
+            const {data} = await axios.get(`https://bankier.pl${href}`);
             const $ = cheerio.load(data);
             let author = $(".m-article-attributes a").text();
             let magazine = $(".m-article-attributes span").text();
