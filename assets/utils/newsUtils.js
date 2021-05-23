@@ -16,6 +16,24 @@ const newsUtils = {
 			articles.push({title:newsTitle, content: newsContent, timestamp: timestamp, imgsrc:imgsrc, href: href});
 		});
         return articles;
+    },
+
+    async fetchArticle(href){
+        try{
+            const {data} = await axios.get(`https://bankier.pl/wiadomosc/${href}.html`);
+            const $ = cheerio.load(data);
+            let author = $(".m-article-attributes a").text();
+            let magazine = $(".m-article-attributes span").text();
+            let imgsrc = $("figure img").attr("src");
+            let header = $("article .o-article-header .a-heading").text();
+            let content = $("article .o-article-content * ").text();
+            let source =  $(".o-article-source a img").attr("src"); 
+            let article = {header, content, imgsrc, author, magazine, source};
+            return article;
+        }catch(e){
+            console.log(e)
+        }
+       
     }
 }
 
